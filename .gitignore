@@ -1,0 +1,9 @@
+# Node
+/node_modules
+npm-debug.log
+yarn-error.log
+
+# Key
+optimal-mender-387018-cce30f9c109f.json
+
+.env

@@ -49,15 +49,18 @@ exports.getVideoById = async (req, res, next) => {
 // Crear un nuevo video
 exports.createVideo = async (req, res, next) => {
   try {
-    const videoFile = req.file; // Asegúrate de que el archivo se encuentre en req.file
+    const videoFile = req.files['videoFile'][0];
+    const imgFile = req.files['imgFile'][0];
 
     // Subir el archivo a Google Cloud Storage
     const videoUrl = await uploadVideoToGCS(videoFile);
+    const imgUrl = await uploadVideoToGCS(imgFile);
 
     // Crear una nueva instancia del modelo de video con los datos enviados y la URL del video
     const newVideo = new Video({
       ...req.body,
-      url: videoUrl
+      videoUrl: videoUrl,
+      imgUrl: imgUrl,
     });
 
     const video = await newVideo.save(); // Guardar el video en la base de datos

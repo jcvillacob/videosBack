@@ -8,7 +8,7 @@ const upload = multer({ storage: storage });
 
 router.get('/', videoController.getAllVideos);
 router.get('/:id', videoController.getVideoById);
-router.post('/', upload.single('videoFile'), videoController.createVideo);
+router.post('/', upload.fields([{ name: 'videoFile', maxCount: 1 }, { name: 'imgFile', maxCount: 1 }]), videoController.createVideo);
 router.put('/:id', videoController.updateVideo);
 router.delete('/:id', videoController.deleteVideo);
 

@@ -7,6 +7,7 @@ const videoSchema = new mongoose.Schema({
     videoUrl: { type: String, required: true },
     imgUrl: { type: String, required: true },
     group: { type: String, enum: ['Conductores', 'Administrativos', 'Todos'], default: 'Todos', required: true },
+    type: { type: String, enum: ['Video', 'PDF'], default: 'Video', required: true },
     test: { type: String, required: true },
   });
 
